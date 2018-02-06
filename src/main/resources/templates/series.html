@@ -3,16 +3,33 @@
 
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 </head>
+
+<style>
+
+p {
+    text-align: center;
+    color: white;
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+</style>
+
 <body>
 
-<th:block th:each="series: ${seriesList}">
-
-    <img th:src="${series.imageUrl}"/>
-    <div th:text="${series.nextAirDate}"></div>
-
-</th:block>
+<div class="row" style="background-color:black;">
+    <th:block th:each="series: ${seriesList}">
+        <div class="col-lg-6">
+            <p th:text="${series.nextAirDate}"></p>
+            <img th:src="${series.imageUrl}"/>
+        </div>
+    </th:block>
+</div>
 
 </body>
 </html>
