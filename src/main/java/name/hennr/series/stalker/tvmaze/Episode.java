@@ -1,4 +1,4 @@
-package name.hennr.series.stalker.series;
+package name.hennr.series.stalker.tvmaze;
 
 public class Episode {
 

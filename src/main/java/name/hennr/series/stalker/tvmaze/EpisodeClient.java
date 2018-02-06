@@ -1,4 +1,4 @@
-package name.hennr.series.stalker.series;
+package name.hennr.series.stalker.tvmaze;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,13 +8,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Service
-public class EpisodeService {
+public class EpisodeClient {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    public String getNextAirDateForTheWalkingDead() {
-        Episode[] episodes = restTemplate.getForObject("http://api.tvmaze.com/shows/73/episodes", Episode[].class);
+    public String getNextAirDateForSeriesWithId(String id) {
+        String url = "http://api.tvmaze.com/shows/" + id + "/episodes";
+        Episode[] episodes = restTemplate.getForObject(url, Episode[].class);
 
         String latestKnownEpisode = episodes[episodes.length - 1].airdate;
 

@@ -7,7 +7,12 @@
 </head>
 <body>
 
-<div th:text="${foo}"/>
+<th:block th:each="series: ${seriesList}">
+
+    <img th:src="${series.imageUrl}"/>
+    <div th:text="${series.nextAirDate}"></div>
+
+</th:block>
 
 </body>
 </html>

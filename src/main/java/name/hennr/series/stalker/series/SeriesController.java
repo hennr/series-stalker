@@ -9,12 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class SeriesController {
 
     @Autowired
-    EpisodeService episodeService;
+    private SeriesService seriesService;
 
     @GetMapping("/series")
     public ModelAndView listSeries() {
         ModelAndView modelAndView = new ModelAndView("series");
-        modelAndView.addObject("foo", episodeService.getNextAirDateForTheWalkingDead());
+
+        modelAndView.addObject("seriesList", seriesService.getAllSeries());
         return modelAndView;
     }
 }
