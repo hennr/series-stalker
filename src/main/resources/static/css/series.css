@@ -1,0 +1,18 @@
+body {
+    background-color: black !important;
+}
+
+p {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container {
+    height: 700px;
+}
+
+.container img {
+    height: 100%;
+    width: auto;
+}

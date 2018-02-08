@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
 
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/series.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
           integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 </head>
 
-<style>
-
-p {
-    text-align: center;
-    color: white;
-}
-img {
-    display: block;
-    margin: 0 auto;
-}
-</style>
-
 <body>
-
-<div class="row" style="background-color:black;">
+<div class="row">
     <th:block th:each="series: ${seriesList}">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <p th:text="${series.nextAirDate}"></p>
-            <img th:src="${series.imageUrl}"/>
+            <div class="container">
+                <img th:src="${series.imageUrl}"/>
+            </div>
         </div>
     </th:block>
 </div>
-
 </body>
 </html>
