@@ -15,5 +15,4 @@ public class SeriesClient {
         Series series = restTemplate.getForObject(url, Series.class);
         return series.image.original;
     }
-
 }
