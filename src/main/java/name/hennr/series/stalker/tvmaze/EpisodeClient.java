@@ -19,7 +19,12 @@ public class EpisodeClient {
 
         String latestKnownEpisode = episodes[episodes.length - 1].airdate;
 
-        LocalDate latestKnowAirDate = LocalDate.from(DateTimeFormatter.ISO_DATE.parse(latestKnownEpisode));
+        LocalDate latestKnowAirDate;
+        try {
+            latestKnowAirDate = LocalDate.from(DateTimeFormatter.ISO_DATE.parse(latestKnownEpisode));
+        } catch (Exception e) {
+            latestKnowAirDate = LocalDate.of(1666, 1, 1);
+        }
 
         if (LocalDate.now().isBefore(latestKnowAirDate)) {
             return "latest known episode available: " + latestKnowAirDate;
