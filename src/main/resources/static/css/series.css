@@ -1,5 +1,6 @@
 body {
     background-color: black !important;
+    overflow-x: hidden;
 }
 
 p {
@@ -8,11 +9,26 @@ p {
     font-weight: bold;
 }
 
-.container {
-    height: 400px;
+.tile {
+    padding: 0 !important;
 }
 
-.container img {
-    height: 100%;
-    width: auto;
+.tile img {
+    max-height: 800px;
+    width: 100%;
+}
+
+.airdate {
+    position: absolute;
+    color: white;
+    background-color: black;
+    opacity: .75;
+    font-weight: bold;
+    font-size: 20px;
+    top: 5%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    border-radius: 10px;
 }
