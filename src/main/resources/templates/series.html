@@ -12,7 +12,7 @@
 <body>
 <div class="row">
     <th:block th:each="series: ${seriesList}">
-        <div class="col-3 tile">
+        <div class="col-3 tile animated fadeIn">
             <span class="airdate" th:text="${series.nextAirDate}"></span>
                 <img th:src="${series.imageUrl}"/>
         </div>
