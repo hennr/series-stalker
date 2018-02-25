@@ -6,6 +6,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class EpisodeClient {
@@ -15,21 +17,24 @@ public class EpisodeClient {
 
     public String getNextAirDateForSeriesWithId(String id) {
         String url = "http://api.tvmaze.com/shows/" + id + "/episodes";
-        Episode[] episodes = restTemplate.getForObject(url, Episode[].class);
+        List<Episode> episodes = Arrays.asList(restTemplate.getForObject(url, Episode[].class));
 
-        String latestKnownEpisode = episodes[episodes.length - 1].airdate;
+        String latestKnownEpisode = "unknown";
 
-        LocalDate latestKnowAirDate;
-        try {
-            latestKnowAirDate = LocalDate.from(DateTimeFormatter.ISO_DATE.parse(latestKnownEpisode));
-        } catch (Exception e) {
-            latestKnowAirDate = LocalDate.of(1666, 1, 1);
+        for (Episode episode : episodes) {
+            LocalDate airdate;
+            try {
+                airdate = LocalDate.from(DateTimeFormatter.ISO_DATE.parse(episode.airdate));
+                if (airdate.isAfter(LocalDate.now())) {
+                    return "next episode: " + airdate.toString();
+                } else {
+                    latestKnownEpisode = airdate.toString();
+                }
+            } catch (Exception e) {
+                break;
+            }
         }
 
-        if (LocalDate.now().isBefore(latestKnowAirDate)) {
-            return "latest known episode available: " + latestKnowAirDate;
-        } else {
-            return "last episode aired on: " + latestKnowAirDate;
-        }
+        return "last episode: " + latestKnownEpisode;
     }
 }
