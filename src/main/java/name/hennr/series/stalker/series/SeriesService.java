@@ -32,6 +32,8 @@ public class SeriesService {
             seriesModels.add(model);
         }
 
+        seriesModels.sort(SeriesModel::compareTo);
+
         return seriesModels;
     }
 }

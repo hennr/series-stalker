@@ -15,26 +15,26 @@ public class EpisodeClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    public String getNextAirDateForSeriesWithId(String id) {
+    public LocalDate getNextAirDateForSeriesWithId(String id) {
         String url = "http://api.tvmaze.com/shows/" + id + "/episodes";
         List<Episode> episodes = Arrays.asList(restTemplate.getForObject(url, Episode[].class));
 
-        String latestKnownEpisode = "unknown";
+        LocalDate latestKnownEpisode = LocalDate.of(1666, 1, 1);
 
         for (Episode episode : episodes) {
             LocalDate airdate;
             try {
                 airdate = LocalDate.from(DateTimeFormatter.ISO_DATE.parse(episode.airdate));
                 if (airdate.isAfter(LocalDate.now())) {
-                    return "next episode: " + airdate.toString();
+                    return airdate;
                 } else {
-                    latestKnownEpisode = airdate.toString();
+                    latestKnownEpisode = airdate;
                 }
             } catch (Exception e) {
                 break;
             }
         }
 
-        return "last episode: " + latestKnownEpisode;
+        return latestKnownEpisode;
     }
 }
