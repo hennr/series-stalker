@@ -18,7 +18,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        LOG.info("up and running");
         SpringApplication.run(Application.class, args);
+        LOG.info("up and running");
     }
 }
