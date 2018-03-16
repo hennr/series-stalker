@@ -1,4 +1,4 @@
-package name.hennr.series.stalker.Record;
+package name.hennr.series.stalker.record;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
