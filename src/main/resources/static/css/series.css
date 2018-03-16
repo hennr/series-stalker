@@ -15,6 +15,7 @@ p {
 
 .tile img {
     max-height: 800px;
+    min-height: 800px;
     width: 100%;
 }
 
