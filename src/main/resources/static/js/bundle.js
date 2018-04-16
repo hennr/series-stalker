@@ -21484,12 +21484,21 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_search_bar2.default, { onSearch: function onSearch(item) {
-	                        return (0, _TvMaze2.default)(item, function (foo) {
-	                            return _this2.updateSearchResult(foo);
-	                        });
-	                    } }),
-	                _react2.default.createElement(_searchResult2.default, { searchResult: this.state.searchResult })
+	                _react2.default.createElement(
+	                    'h1',
+	                    null,
+	                    'What do you want to stalk today?'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(_search_bar2.default, { onSearch: function onSearch(item) {
+	                            return (0, _TvMaze2.default)(item, function (foo) {
+	                                return _this2.updateSearchResult(foo);
+	                            });
+	                        } }),
+	                    _react2.default.createElement(_searchResult2.default, { searchResult: this.state.searchResult })
+	                )
 	            );
 	        }
 	    }]);
