@@ -28,7 +28,7 @@ export default class App extends React.Component {
                     What do you want to stalk today?
                 </h1>
                 <div>
-                    <SearchBar onSearch={(item) => tvMazeClient(item, (foo) => this.updateSearchResult(foo))}/>
+                    <SearchBar onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}/>
                     <SearchResult searchResult={this.state.searchResult}/>
                 </div>
             </div>
