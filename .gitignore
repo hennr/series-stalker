@@ -26,3 +26,5 @@ nbdist/
 node/
 node_modules/
 yarn-error.log
+
+bundle.js
