@@ -5,7 +5,10 @@ import SearchBar from './search_bar';
 import tvMazeClient from './TvMaze';
 import SearchResult from './search-result';
 
-export default class App extends React.Component<{}, { [string]: any }> {
+type props = {}
+type state = { searchResult: Array<string> }
+
+export default class App extends React.Component<props, state> {
 
     constructor() {
         super();
@@ -15,7 +18,7 @@ export default class App extends React.Component<{}, { [string]: any }> {
     }
 
     updateSearchResult(newResult: Array<{ show: string }>) {
-        let shows = [];
+        let shows: Array<string> = [];
 
         newResult.forEach(function (item) {
             shows.push(item.show);
@@ -27,9 +30,7 @@ export default class App extends React.Component<{}, { [string]: any }> {
     render() {
         return (
             <div>
-                <h1>
-                    What do you want to stalk today?
-                </h1>
+                <h1>What do you want to stalk today?</h1>
                 <div>
                     <SearchBar
                         onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}/>
