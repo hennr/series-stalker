@@ -1,6 +1,7 @@
 package name.hennr.series.stalker.series;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class SeriesModel implements Comparable<SeriesModel> {
     public String imageUrl;
@@ -8,9 +9,9 @@ public class SeriesModel implements Comparable<SeriesModel> {
 
     public String getNextAirDate() {
         if (nextAirDate.isBefore(LocalDate.now())) {
-            return "last episode: " + nextAirDate;
+            return "last: " + nextAirDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
         } else {
-            return "next episode: " + nextAirDate;
+            return "next: " + nextAirDate.format(DateTimeFormatter.ofPattern("dd.MM.yy"));
         }
     }
 
