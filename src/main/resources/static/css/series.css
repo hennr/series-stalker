@@ -1,16 +1,13 @@
-body {
+html, body {
     background-color: black !important;
+    padding: 0;
+    margin: 0;
     overflow-x: hidden;
 }
 
-p {
-    color: white;
-    text-align: center;
-    font-weight: bold;
-}
-
-.tile {
-    padding: 0 !important;
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .tile img {
@@ -20,18 +17,13 @@ p {
 }
 
 .airdate {
-    position: absolute;
-    color: white;
-    background-color: black;
-    opacity: .75;
+    color: lightgray;
+    background-color: #3b404e;
     font-weight: bold;
     font-size: 20px;
-    top: 30px;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
     padding: 5px;
-    border-radius: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 

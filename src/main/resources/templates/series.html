@@ -6,14 +6,12 @@
     <meta charset="utf-8"/>
     <title>Series Stalker</title>
     <link rel="stylesheet" href="css/series.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous"/>
 </head>
 
 <body>
-<div class="row">
+<div class="container">
     <th:block th:each="series: ${seriesList}">
-        <div class="col-3 tile animated fadeIn">
+        <div class="tile animated fadeIn">
             <span class="airdate" th:text="${series.nextAirDate}"></span>
                 <img th:src="${series.imageUrl}"/>
         </div>
