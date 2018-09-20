@@ -17,6 +17,13 @@ public class SeriesModel implements Comparable<SeriesModel> {
 
     @Override
     public int compareTo(SeriesModel seriesModel) {
-        return seriesModel.nextAirDate.compareTo(nextAirDate);
+
+        if (seriesModel.nextAirDate.isBefore(LocalDate.now()) && this.nextAirDate.isBefore(LocalDate.now())) {
+            return seriesModel.nextAirDate.compareTo(nextAirDate);
+        } else if (seriesModel.nextAirDate.isAfter(LocalDate.now()) && this.nextAirDate.isAfter(LocalDate.now())) {
+            return -1 * seriesModel.nextAirDate.compareTo(nextAirDate);
+        } else {
+            return seriesModel.nextAirDate.compareTo(this.nextAirDate);
+        }
     }
 }
