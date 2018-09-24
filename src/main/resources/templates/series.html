@@ -9,13 +9,32 @@
 </head>
 
 <body>
-<div class="container">
+
+<div id="overlay" onClick="hideSearchOverlay()">
+    <div id="searchOverlay"></div>
+</div>
+
+<div class="container" onclick="showSearchOverlay()">
     <th:block th:each="series: ${seriesList}">
         <div class="tile animated fadeIn">
             <span class="airdate" th:text="${series.nextAirDate}"></span>
-                <img th:src="${series.imageUrl}"/>
+            <img th:src="${series.imageUrl}"/>
         </div>
     </th:block>
 </div>
+
+<script>
+    function showSearchOverlay() {
+        document.getElementById("overlay").style.visibility = "visible";
+        document.getElementById("searchInput").focus();
+    }
+
+    function hideSearchOverlay() {
+        document.getElementById("overlay").style.visibility = "hidden";
+    }
+</script>
+
+<script src="/js/bundle.js"></script>
+
 </body>
 </html>
