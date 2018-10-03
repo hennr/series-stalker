@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "bundle": "parcel build src/index.js --no-cache --out-dir ../../../target/classes/static/js --out-file bundle --public-url /js",
-    "watch": "parcel watch src/index.js --out-dir ../../../target/classes/static/js --out-file bundle --public-url /js",
+    "watch": "CHOKIDAR_USEPOLLING=true parcel watch src/index.js --out-dir ../../../target/classes/static/js --out-file bundle --public-url /js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test"
   },
   "author": "Series Stalker Project",
