@@ -9,6 +9,6 @@ public class SlashController {
 
     @GetMapping("/")
     public RedirectView redirectWithUsingRedirectView() {
-        return new RedirectView("/series");
+        return new RedirectView("/series.html");
     }
 }
