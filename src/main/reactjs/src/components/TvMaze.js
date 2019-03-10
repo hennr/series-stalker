@@ -1,11 +1,10 @@
 // @flow
 
-import TvMaze from "tv-maze";
-
-const tvMazeClient = TvMaze.createClient();
+import axios from "axios";
 
 export default function client(query: string, callback: Function) {
-    tvMazeClient.search(query, function (err, shows) {
-        callback(shows);
-    });
+    axios.get("https://api.tvmaze.com/search/shows?q=" + query)
+        .then((response) => {
+            callback(response.data);
+        });
 }
