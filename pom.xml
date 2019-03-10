@@ -95,12 +95,12 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>yarn test</id>
+                        <id>yarn flow and test</id>
                         <goals>
                             <goal>yarn</goal>
                         </goals>
                         <configuration>
-                            <arguments>test</arguments>
+                            <arguments>run verify</arguments>
                         </configuration>
                     </execution>
                     <execution>
