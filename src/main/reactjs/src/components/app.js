@@ -1,18 +1,31 @@
+// @flow
+
 import React from 'react';
 import SearchBar from './search_bar';
 import tvMazeClient from './TvMaze';
+import type {searchItem} from './search-result';
 import SearchResult from './search-result';
 import Tile from "./tile";
 import axios from "axios/index";
 
-export default class App extends React.Component {
+type props = {}
+
+type state = {
+    searchResult: Array<searchItem>,
+    series: Array<string>,
+    errorMessage: string,
+    showSearchOverlay: boolean
+}
+
+export default class App extends React.Component<props, state> {
 
     constructor() {
         super();
         this.state = {
             searchResult: [],
             series: [],
-            errorMessage: ""
+            errorMessage: "",
+            showSearchOverlay: false
         };
     }
 
@@ -22,11 +35,11 @@ export default class App extends React.Component {
             .then(response => {
                 this.setState({series: response.data});
             }).catch(e => {
-                this.setState({errorMessage: "no series ids could be loaded"});
+            this.setState({errorMessage: "no series ids could be loaded"});
         });
     }
 
-    updateSearchResult(newResult) {
+    updateSearchResult(newResult: any) {
         let shows = [];
 
         newResult.forEach(function (item) {
@@ -34,15 +47,6 @@ export default class App extends React.Component {
         });
 
         this.setState({searchResult: shows})
-    }
-
-    static showSearchOverlay() {
-        document.getElementById("overlay").style.visibility = "visible";
-        document.getElementById("searchInput").focus();
-    }
-
-    static hideSearchOverlay() {
-        document.getElementById("overlay").style.visibility = "hidden";
     }
 
     render() {
@@ -56,17 +60,20 @@ export default class App extends React.Component {
         return (
             <div>
                 {/*tiles*/}
-                <div className="container" onClick={App.showSearchOverlay}>
+                <div className="container"
+                     onClick={() => this.setState({showSearchOverlay: !this.state.showSearchOverlay})}>
                     {this.state.series.map((series) => <Tile series={series}/>)}
                 </div>
 
                 {/*search overlay*/}
-                <div id="overlay" onClick={App.hideSearchOverlay}>
+                {this.state.showSearchOverlay &&
+                <div id="overlay" onClick={() => this.setState({showSearchOverlay: !this.state.showSearchOverlay})}>
                     <h1>What do you want to stalk today?</h1>
-                    <SearchBar
+                    < SearchBar
                         onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}/>
                     <SearchResult searchResult={this.state.searchResult}/>
                 </div>
+                }
             </div>
         );
     }
