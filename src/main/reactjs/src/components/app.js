@@ -1,10 +1,10 @@
 // @flow
 
 import React from 'react';
-import SearchBar from './search_bar';
+import SearchBar from './search/search_bar';
 import tvMazeClient from './TvMaze';
-import type {searchItem} from './search-result';
-import SearchResult from './search-result';
+import type {searchItem} from './search/search-result';
+import SearchResult from './search/search-result';
 import Tile from "./tile";
 import axios from "axios/index";
 
