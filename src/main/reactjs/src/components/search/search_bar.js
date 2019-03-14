@@ -1,9 +1,14 @@
+// @flow
+
 import React from "react";
 
-export default function SearchBar(props) {
+type props = {
+    onSearch: Function
+}
+
+export default function SearchBar(props: props) {
     return (
         <div className={"searchBar"}>
-            {/*target.removeEventListener('click', myFunction, false);*/}
             <input id="searchInput" onChange={event => props.onSearch(event.target.value)}
             />
         </div>
