@@ -2,7 +2,7 @@
 
 import React from 'react';
 import SearchBar from './search/search_bar';
-import tvMazeClient from './TvMaze';
+import tvMazeClient from './tvmaze/TvMazeClient';
 import type {searchItem} from './search/search-result';
 import SearchResult from './search/search-result';
 import Tile from "./tile";
