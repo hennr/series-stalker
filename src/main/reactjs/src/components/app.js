@@ -5,6 +5,7 @@ import SearchBar from './search/search_bar';
 import tvMazeClient from './tvmaze/TvMazeClient';
 import type {searchItem} from './search/search-result';
 import SearchResult from './search/search-result';
+import type {series} from "./tile";
 import Tile from "./tile";
 import axios from "axios/index";
 
@@ -12,7 +13,7 @@ type props = {}
 
 type state = {
     searchResult: Array<searchItem>,
-    series: Array<string>,
+    series: Array<series>,
     errorMessage: string,
     showSearchOverlay: boolean
 }
