@@ -1,5 +1,5 @@
 {
-  "name": "series-stalker-frontend",
+  "name": "series-stalker",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -7,18 +7,8 @@
     "watch": "CHOKIDAR_USEPOLLING=true parcel watch src/index.js --out-dir ../../../target/classes/static/js --out-file bundle --public-url /js",
     "test": "jest",
     "flow": "flow",
-    "verify": "run-p test"
+    "verify": "run-p test flow"
   },
-  "author": "Series Stalker Project",
-  "contributors": [
-    {
-      "name": "Christian Dräger",
-      "email": "christian.draeger1@gmail.de"
-    },
-    {
-      "name": "Jan-Hendrik Peters"
-    }
-  ],
   "license": "Beerware",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
