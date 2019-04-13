@@ -67,14 +67,14 @@ export default class App extends React.Component<props, state> {
                 </div>
 
                 {/*search overlay*/}
-                {this.state.showSearchOverlay &&
                 <div id="overlay" onClick={() => this.setState({showSearchOverlay: !this.state.showSearchOverlay})}>
                     <h1>What do you want to stalk today?</h1>
                     < SearchBar
-                        onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}/>
+                        visible={this.state.showSearchOverlay}
+                        onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}
+                    />
                     <SearchResult searchResult={this.state.searchResult}/>
                 </div>
-                }
             </div>
         );
     }
