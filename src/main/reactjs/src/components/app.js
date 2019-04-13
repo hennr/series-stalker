@@ -20,8 +20,8 @@ type state = {
 
 export default class App extends React.Component<props, state> {
 
-    constructor() {
-        super();
+    constructor(props: props) {
+        super(props);
         this.state = {
             searchResult: [],
             series: [],
