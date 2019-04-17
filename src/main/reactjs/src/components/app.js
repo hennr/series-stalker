@@ -62,15 +62,18 @@ export default class App extends React.Component<props, state> {
             <div>
                 {/*tiles*/}
                 <div className="container"
-                     onClick={() => this.setState({showSearchOverlay: !this.state.showSearchOverlay})}>
+                     onClick={() => this.setState({showSearchOverlay: true})}>
                     {this.state.series.map((series) => <Tile series={series}/>)}
                 </div>
 
                 {/*search overlay*/}
-                <div id="overlay" onClick={() => this.setState({showSearchOverlay: !this.state.showSearchOverlay})}>
+                <div
+                    id="overlay"
+                    onClick={() => this.setState({showSearchOverlay: false})}
+                    style={{visibility: this.state.showSearchOverlay ? 'visible' : 'hidden'}}
+                >
                     <h1>What do you want to stalk today?</h1>
                     < SearchBar
-                        visible={this.state.showSearchOverlay}
                         onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}
                     />
                     <SearchResult searchResult={this.state.searchResult}/>
