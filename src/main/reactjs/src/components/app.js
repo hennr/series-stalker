@@ -72,18 +72,21 @@ export default class App extends React.Component<props, state> {
                     {this.state.series.map((series, index) => <Tile series={series} key={index}/>)}
                 </div>
 
-                {/*search overlay*/}
-                <div
-                    id="overlay"
-                    onClick={(event: Event) => this.hideOverlay(event)}
-                    style={{visibility: this.state.showSearchOverlay ? 'visible' : 'hidden'}}
-                >
-                    <h1>What do you want to stalk today?</h1>
-                    <SearchBar
-                        onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}
-                    />
-                    <SearchResult searchResult={this.state.searchResult}/>
-                </div>
+                {this.state.showSearchOverlay &&
+                    <div
+                        id="overlay"
+                        onClick={(event: Event) => this.hideOverlay(event)}
+                        style={{visibility: this.state.showSearchOverlay ? 'visible' : 'hidden'}}
+                    >
+                        <h1>What do you want to stalk today?</h1>
+
+                        <SearchBar
+                            onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}
+                        />
+
+                        <SearchResult searchResult={this.state.searchResult}/>
+                    </div>
+                }
             </div>
         );
     }
