@@ -35,8 +35,8 @@ export default class App extends React.Component<props, state> {
             .get('/series/data', '{timeout: 3000}')
             .then(response => {
                 this.setState({series: response.data});
-            }).catch(e => {
-            this.setState({errorMessage: "no series ids could be loaded"});
+            }).catch((e) => {
+            this.setState({errorMessage: `no series ids could be loaded => ${e}`});
         });
     }
 
@@ -63,7 +63,7 @@ export default class App extends React.Component<props, state> {
                 {/*tiles*/}
                 <div className="container"
                      onClick={() => this.setState({showSearchOverlay: true})}>
-                    {this.state.series.map((series) => <Tile series={series}/>)}
+                    {this.state.series.map((series, index) => <Tile series={series} key={index}/>)}
                 </div>
 
                 {/*search overlay*/}
