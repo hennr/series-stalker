@@ -50,10 +50,6 @@ export default class App extends React.Component<props, state> {
         this.setState({searchResult: shows})
     }
     
-    showOverlay() {
-        this.setState({showSearchOverlay: true})
-    }
-
     hideOverlay(event: Event) {
         if (event.target.getAttribute('id') === 'overlay') {
             this.setState({showSearchOverlay: false})
@@ -72,7 +68,7 @@ export default class App extends React.Component<props, state> {
             <div>
                 {/*tiles*/}
                 <div className="container"
-                     onClick={this.showOverlay}>
+                     onClick={() => this.setState({showSearchOverlay: true})}>
                     {this.state.series.map((series, index) => <Tile series={series} key={index}/>)}
                 </div>
 
