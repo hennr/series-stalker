@@ -51,8 +51,12 @@ export default class App extends React.Component<props, state> {
     }
     
     hideOverlay(event: Event) {
-        if (event.target.getAttribute('id') === 'overlay') {
-            this.setState({showSearchOverlay: false})
+        const target = event.target;
+
+        if (target instanceof HTMLInputElement && target.getAttribute('id') !== 'overlay') {
+            this.setState({showSearchOverlay: true});
+        } else {
+            this.setState({showSearchOverlay: false});
         }
     }
 
@@ -75,7 +79,7 @@ export default class App extends React.Component<props, state> {
                 {this.state.showSearchOverlay &&
                     <div
                         id="overlay"
-                        onClick={(event: Event) => this.hideOverlay(event)}
+                        onClick={(event) => this.hideOverlay(event)}
                         style={{visibility: this.state.showSearchOverlay ? 'visible' : 'hidden'}}
                     >
                         <h1>What do you want to stalk today?</h1>

@@ -6,9 +6,13 @@ type props = {
     onSearch: Function
 }
 
-export default class SearchBar extends React.Component {
+export default class SearchBar extends React.Component<props> {
     componentDidMount() {
-        document.getElementById('searchInput').focus();
+        const searchInput = document.getElementById('searchInput');
+
+        if (searchInput !== null) {
+            searchInput.focus();
+        }
     }
 
     render() {
