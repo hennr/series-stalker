@@ -50,6 +50,16 @@ export default class App extends React.Component<props, state> {
         this.setState({searchResult: shows})
     }
 
+    hideOverlay(event: Event) {
+        const target = event.target;
+
+        if (target instanceof HTMLElement && target.getAttribute('id') === 'overlay') {
+            this.setState({showSearchOverlay: false});
+        } else {
+            this.setState({showSearchOverlay: true});
+        }
+    }
+
     render() {
 
         if (this.state.errorMessage.length !== 0) {
@@ -62,22 +72,25 @@ export default class App extends React.Component<props, state> {
             <div>
                 {/*tiles*/}
                 <div className="container"
-                     onClick={() => this.setState({showSearchOverlay: true})}>
+                     onClick={(event) => this.hideOverlay(event)}>
                     {this.state.series.map((series, index) => <Tile series={series} key={index}/>)}
                 </div>
 
-                {/*search overlay*/}
+                {this.state.showSearchOverlay &&
                 <div
                     id="overlay"
-                    onClick={() => this.setState({showSearchOverlay: false})}
+                    onClick={(event) => this.hideOverlay(event)}
                     style={{visibility: this.state.showSearchOverlay ? 'visible' : 'hidden'}}
                 >
                     <h1>What do you want to stalk today?</h1>
-                    < SearchBar
+
+                    <SearchBar
                         onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}
                     />
+
                     <SearchResult searchResult={this.state.searchResult}/>
                 </div>
+                }
             </div>
         );
     }
