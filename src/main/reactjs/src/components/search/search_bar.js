@@ -2,16 +2,17 @@
 
 import React from "react";
 
-type state = {}
-
 type props = {
     onSearch: Function
 }
 
-export default class SearchBar extends React.Component <props, state> {
+export default class SearchBar extends React.Component<props> {
+    componentDidMount() {
+        const searchInput = document.getElementById('searchInput');
 
-    constructor(props: props) {
-        super(props);
+        if (searchInput !== null) {
+            searchInput.focus();
+        }
     }
 
     render() {
