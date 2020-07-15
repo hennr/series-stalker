@@ -16,7 +16,7 @@
     "@babel/preset-env": "7.10.0",
     "@babel/preset-flow": "7.9.0",
     "@babel/preset-react": "7.9.4",
-    "@babel/register": "7.9.0",
+    "@babel/register": "7.10.5",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "flow-bin": "0.125.1",
