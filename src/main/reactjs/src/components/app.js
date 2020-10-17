@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import SearchBar from './search/search_bar';
 import tvMazeClient from './tvmaze/TvMazeClient';
 import type {searchItem} from './search/search-result';
@@ -30,7 +30,7 @@ export default class App extends React.Component<props, state> {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         axios
             .get('/series/data', '{timeout: 3000}')
             .then(response => {
@@ -60,7 +60,7 @@ export default class App extends React.Component<props, state> {
         }
     }
 
-    render() {
+    render(): React.Node {
 
         if (this.state.errorMessage.length !== 0) {
             return (

@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 
 type props = {
     searchResult: Array<searchItem>
@@ -14,7 +14,7 @@ export type searchItem = {
 
 export type image = { medium: string }
 
-export default function SearchResult(props: props) {
+export default function SearchResult(props: props): React.Node {
 
     const searchItems = props.searchResult.map((searchItem) => {
 
