@@ -1,13 +1,13 @@
 import SearchBar from "./search_bar";
-import App from "../app";
+import { shallow } from 'enzyme';
 
 describe('search bar', () => {
     it('renders without crashing', () => {
         render(<SearchBar onSearch={() => {}}/>);
     });
 
-    // it('renders tiles if state is found', () => {
-    //     const wrapper = shallow(<SearchBar/>);
-    //     expect(wrapper.find(SearchBar)).to.have.lengthOf(1);
-    // });
+    it('renders input field', () => {
+        const wrapper = shallow(<SearchBar/>);
+        expect(wrapper.find("#searchInput")).toHaveLength(1);
+    });
 });
