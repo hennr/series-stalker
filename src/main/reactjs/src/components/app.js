@@ -31,8 +31,7 @@ export default class App extends React.Component<props, state> {
     }
 
     componentDidMount() {
-        axios
-            .get('/series/data', '{timeout: 3000}')
+        axios( {url: '/series/data', method: 'get', timeout: '3000'} )
             .then(response => {
                 this.setState({series: response.data});
             }).catch((e) => {

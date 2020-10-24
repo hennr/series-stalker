@@ -28,7 +28,7 @@
     "parcel": "1.12.4"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router": "^5.2.0"
