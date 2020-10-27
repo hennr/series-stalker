@@ -1,5 +1,3 @@
-// @flow
-
 import axios from "axios";
 
 export default function client(query: string, callback: Function) {

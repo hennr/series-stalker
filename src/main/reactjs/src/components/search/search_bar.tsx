@@ -1,12 +1,10 @@
-// @flow
+import React from "react";
 
-import * as React from "react";
-
-type props = {
-    onSearch: Function
+type searchBarProps = {
+    onSearch: ((searchTerm: string) => void)
 }
 
-export default class SearchBar extends React.Component<props> {
+export default class SearchBar extends React.Component<searchBarProps> {
     componentDidMount() {
         const searchInput = document.getElementById('searchInput');
 
@@ -15,7 +13,7 @@ export default class SearchBar extends React.Component<props> {
         }
     }
 
-    render(): React.Node {
+    render() {
         return (
             <div className={"searchBar"}>
                 <input id="searchInput" onChange={event => this.props.onSearch(event.target.value)}/>

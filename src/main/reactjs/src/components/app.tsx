@@ -1,19 +1,16 @@
-// @flow
-
-import * as React from 'react';
+import React from 'react';
 import SearchBar from './search/search_bar';
 import tvMazeClient from './tvmaze/TvMazeClient';
 import type {searchItem} from './search/search-result';
 import SearchResult from './search/search-result';
-import type {series} from "./tile";
-import Tile from "./tile";
+import Tile from './tile'
 import axios from "axios/index";
 
 type props = {}
 
 type state = {
     searchResult: Array<searchItem>,
-    series: Array<series>,
+    series: Array<any>,
     errorMessage: string,
     showSearchOverlay: boolean
 }
@@ -31,7 +28,7 @@ export default class App extends React.Component<props, state> {
     }
 
     componentDidMount() {
-        axios( {url: '/series/data', method: 'get', timeout: '3000'} )
+        axios( {url: '/series/data', method: 'get', timeout: 3000} )
             .then(response => {
                 this.setState({series: response.data});
             }).catch((e) => {
@@ -39,8 +36,8 @@ export default class App extends React.Component<props, state> {
         });
     }
 
-    updateSearchResult(newResult: any) {
-        let shows = [];
+    updateSearchResult(newResult: any[]) {
+        let shows: Array<searchItem> = [];
 
         newResult.forEach(function (item) {
             shows.push(item.show);
@@ -49,7 +46,7 @@ export default class App extends React.Component<props, state> {
         this.setState({searchResult: shows})
     }
 
-    hideOverlay(event: Event) {
+    hideOverlay(event: React.MouseEvent<HTMLInputElement> ) {
         const target = event.target;
 
         if (target instanceof HTMLElement && target.getAttribute('id') === 'overlay') {
@@ -59,7 +56,7 @@ export default class App extends React.Component<props, state> {
         }
     }
 
-    render(): React.Node {
+    render() {
 
         if (this.state.errorMessage.length !== 0) {
             return (
@@ -71,20 +68,20 @@ export default class App extends React.Component<props, state> {
             <div>
                 {/*tiles*/}
                 <div className="container"
-                     onClick={(event) => this.hideOverlay(event)}>
-                    {this.state.series.map((series, index) => <Tile series={series} key={index}/>)}
+                     onClick={(event: React.MouseEvent<HTMLInputElement> ) => this.hideOverlay(event)}>
+                    {this.state.series.map((series, index) => <Tile nextAirDate={series.nextAirDate} imageUrl={series.imageUrl}  key={index}/>)}
                 </div>
 
                 {this.state.showSearchOverlay &&
                 <div
                     id="overlay"
-                    onClick={(event) => this.hideOverlay(event)}
+                    onClick={(event: React.MouseEvent<HTMLInputElement> ) => this.hideOverlay(event)}
                     style={{visibility: this.state.showSearchOverlay ? 'visible' : 'hidden'}}
                 >
                     <h1>What do you want to stalk today?</h1>
 
                     <SearchBar
-                        onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults) => this.updateSearchResult(searchResults))}
+                    onSearch={(searchTerm) => tvMazeClient(searchTerm, (searchResults: []) => this.updateSearchResult(searchResults))}
                     />
 
                     <SearchResult searchResult={this.state.searchResult}/>

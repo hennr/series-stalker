@@ -112,12 +112,12 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>yarn flow and test</id>
+                        <id>yarn test</id>
                         <goals>
                             <goal>yarn</goal>
                         </goals>
                         <configuration>
-                            <arguments>run verify</arguments>
+                            <arguments>test</arguments>
                         </configuration>
                     </execution>
                     <execution>

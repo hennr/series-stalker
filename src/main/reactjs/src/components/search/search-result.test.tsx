@@ -1,3 +1,5 @@
+import { render } from "enzyme";
+import React from "react";
 import type {image, searchItem} from "./search-result"
 import SearchResult from "./search-result";
 
@@ -24,8 +26,7 @@ describe("search result", () => {
         const div = document.createElement('div');
         const result: searchItem  = {
             id: "666",
-            name: "evil dead",
-            image: null
+            name: "evil dead"
         };
         render(<SearchResult searchResult={[result]}/>, div);
     });

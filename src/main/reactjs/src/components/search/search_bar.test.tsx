@@ -1,5 +1,6 @@
 import SearchBar from "./search_bar";
-import { shallow } from 'enzyme';
+import { render, shallow } from 'enzyme';
+import React from "react";
 
 describe('search bar', () => {
     it('renders without crashing', () => {
@@ -7,7 +8,7 @@ describe('search bar', () => {
     });
 
     it('renders input field', () => {
-        const wrapper = shallow(<SearchBar/>);
+        const wrapper = shallow(<SearchBar onSearch={() => {}} />);
         expect(wrapper.find("#searchInput")).toHaveLength(1);
     });
 });
