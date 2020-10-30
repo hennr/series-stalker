@@ -3,4 +3,9 @@ import ReactDOM from 'react-dom';
 
 import App from './components/app';
 
-ReactDOM.render(<App/>, document.querySelector('#app'));
+ReactDOM.render(
+<React.StrictMode>
+    <App/>
+</React.StrictMode>,
+document.getElementById('app')
+);
