@@ -4,8 +4,7 @@
   "main": "index.tsx",
   "scripts": {
     "bundle": "parcel build src/main/reactjs/index.tsx --no-cache --out-dir target/classes/static/js --out-file bundle --public-url /js",
-    "watch": "CHOKIDAR_USEPOLLING=true parcel watch src/main/reactjs/index.tsx --out-dir target/classes/static/js --out-file bundle --public-url /js",
-    "test": "jest"
+    "watch": "CHOKIDAR_USEPOLLING=true parcel watch src/main/reactjs/index.tsx --out-dir target/classes/static/js --out-file bundle --public-url /js"
   },
   "license": "Beerware",
   "devDependencies": {
