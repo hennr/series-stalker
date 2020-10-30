@@ -12,4 +12,4 @@ For local development start the program via spring-boot-maven-plugin:
 
 If working on the front-end code start the parcel watch mode, after the spring-boot:run, to get your changes hot reloaded in the browser:
 
-    node/yarn/dist/bin/yarn watch
+    ./yarn watch
