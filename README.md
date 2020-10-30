@@ -6,11 +6,10 @@ If you have the same problem answering that question drop me a line, I may add a
 
 ## Development
 
-For local development start the program via spring-boot-maven-plugin
+For local development start the program via spring-boot-maven-plugin:
 
     mvn spring-boot:run
 
-If working on the front-end code start the parcel watch mode to get your changes hot reloaded in the browser:
+If working on the front-end code start the parcel watch mode, after the spring-boot:run, to get your changes hot reloaded in the browser:
 
-    cd src/main/reactjs
     node/yarn/dist/bin/yarn watch

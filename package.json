@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.tsx",
   "scripts": {
-    "bundle": "parcel build src/index.tsx --no-cache --out-dir ../../../target/classes/static/js --out-file bundle --public-url /js",
-    "watch": "CHOKIDAR_USEPOLLING=true parcel watch src/index.tsx --out-dir ../../../target/classes/static/js --out-file bundle --public-url /js",
+    "bundle": "parcel build src/main/reactjs/index.tsx --no-cache --out-dir target/classes/static/js --out-file bundle --public-url /js",
+    "watch": "CHOKIDAR_USEPOLLING=true parcel watch src/main/reactjs/index.tsx --out-dir target/classes/static/js --out-file bundle --public-url /js",
     "test": "jest"
   },
   "license": "Beerware",

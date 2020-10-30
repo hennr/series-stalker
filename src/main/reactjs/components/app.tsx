@@ -4,7 +4,7 @@ import tvMazeClient from './tvmaze/TvMazeClient';
 import type {searchItem} from './search/search-result';
 import SearchResult from './search/search-result';
 import Tile from './tile'
-import axios from "axios/index";
+import axios from "axios";
 
 type props = {}
 
