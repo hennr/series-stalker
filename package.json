@@ -10,7 +10,7 @@
   "license": "Beerware",
   "devDependencies": {
     "@types/enzyme": "^3.10.8",
-    "@types/jest": "^26.0.19",
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.14",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
