@@ -28,7 +28,7 @@ public class SeriesClient {
 
         @Override
         protected String run() {
-            String url = "http://api.tvmaze.com/shows/" + id;
+            String url = "https://api.tvmaze.com/shows/" + id;
             Series series = restTemplate.getForObject(url, Series.class);
             return series.image.original;
         }
