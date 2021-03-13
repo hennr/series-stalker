@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Mono
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 @Service
 class EpisodeClient {
@@ -14,22 +13,24 @@ class EpisodeClient {
     private val webClient = WebClient.create("https://api.tvmaze.com/shows/")
 
     fun getNextAirDateForSeriesWithId(seriesId: String): Mono<Pair<String, LocalDate>> {
-        val episodes: Mono<List<Episode>> = webClient
-            .get()
-            .uri("$seriesId/episodes")
-            .retrieve()
-            .bodyToMono(object: ParameterizedTypeReference<List<Episode>> () {})
+        val episodesResponse: Mono<List<Episode>> = webClient
+                .get()
+                .uri("$seriesId/episodes")
+                .retrieve()
+                .bodyToMono(object : ParameterizedTypeReference<List<Episode>>() {})
 
-        return episodes.map { episodes ->
-            Pair.of(
-                seriesId,
-                LocalDate.from(DateTimeFormatter.ISO_DATE.parse(
-                    episodes
-//                    .filter { LocalDate.from(DateTimeFormatter.ISO_DATE.parse(it.airdate)).isAfter(LocalDate.now())}
-                    .sortedBy { it.airdate }
-                        .last()
-                        .airdate))
-            )
+        return episodesResponse.map { episodes: List<Episode> ->
+            Pair.of(seriesId, calculateLatestRelevantEpisode(episodes))
+        }
+    }
+
+    private fun calculateLatestRelevantEpisode(episodes: List<Episode>): LocalDate {
+        val ascendingEpisodeListByDate: List<LocalDate> = episodes.sortedBy { it.airdate }.map { LocalDate.parse(it.airdate) }
+
+        return if (ascendingEpisodeListByDate.last().isBefore(LocalDate.now())) {
+            ascendingEpisodeListByDate.last()
+        } else {
+            ascendingEpisodeListByDate.first { it.isAfter(LocalDate.now()) || it == LocalDate.now() }
         }
     }
 }
