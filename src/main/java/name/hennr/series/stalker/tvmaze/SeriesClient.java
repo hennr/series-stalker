@@ -1,41 +1,22 @@
 package name.hennr.series.stalker.tvmaze;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
-import com.netflix.hystrix.HystrixCommand;
-import com.netflix.hystrix.HystrixCommandGroupKey;
+import reactor.core.publisher.Mono;
 
 @Service
 public class SeriesClient {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private WebClient webClient = WebClient.create("https://api.tvmaze.com/shows/");
 
-    public String getImageUrlForSeriesWithId(String id) {
-        return new HystrixSeriesClient(id).execute();
-    }
-
-    private class HystrixSeriesClient extends HystrixCommand<String> {
-
-        private String id;
-
-        HystrixSeriesClient(String id) {
-            super(HystrixCommandGroupKey.Factory.asKey("series"), 1500);
-            this.id = id;
-        }
-
-        @Override
-        protected String run() {
-            String url = "https://api.tvmaze.com/shows/" + id;
-            Series series = restTemplate.getForObject(url, Series.class);
-            return series.image.original;
-        }
-
-        @Override
-        protected String getFallback() {
-            return "";
-        }
+    public Mono<Pair<String, SeriesImages>> getImageUrlForSeriesWithId(String id) {
+        return webClient
+            .get()
+            .uri(id)
+            .retrieve()
+            .bodyToMono(SeriesImages.class)
+                .map(seriesImages -> Pair.of(id, seriesImages));
     }
 }

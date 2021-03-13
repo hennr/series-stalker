@@ -5,6 +5,14 @@ import java.time.format.DateTimeFormatter;
 
 public class SeriesModel implements Comparable<SeriesModel> {
     public String imageUrl;
+
+    public SeriesModel() { }
+
+    public SeriesModel(final String imageUrl, final LocalDate nextAirDate) {
+        this.imageUrl = imageUrl;
+        this.nextAirDate = nextAirDate;
+    }
+
     public LocalDate nextAirDate;
 
     public String getNextAirDate() {

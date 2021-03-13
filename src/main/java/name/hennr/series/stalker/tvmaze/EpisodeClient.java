@@ -1,13 +1,16 @@
 package name.hennr.series.stalker.tvmaze;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import reactor.core.publisher.Mono;
 
 @Service
 public class EpisodeClient {
@@ -15,7 +18,7 @@ public class EpisodeClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    public LocalDate getNextAirDateForSeriesWithId(String id) {
+    public Mono<Pair<String, LocalDate>> getNextAirDateForSeriesWithId(String id) {
         String url = "http://api.tvmaze.com/shows/" + id + "/episodes";
         List<Episode> episodes = Arrays.asList(restTemplate.getForObject(url, Episode[].class));
 
@@ -26,7 +29,7 @@ public class EpisodeClient {
             try {
                 airdate = LocalDate.from(DateTimeFormatter.ISO_DATE.parse(episode.airdate));
                 if (airdate.isAfter(LocalDate.now())) {
-                    return airdate;
+                    return Mono.just(Pair.of(id, airdate));
                 } else {
                     latestKnownEpisode = airdate;
                 }
@@ -35,6 +38,6 @@ public class EpisodeClient {
             }
         }
 
-        return latestKnownEpisode;
+        return Mono.just(Pair.of(id, latestKnownEpisode));
     }
 }

@@ -1,6 +1,6 @@
 package name.hennr.series.stalker.tvmaze;
 
-public class Series {
+public class SeriesImages {
 
     public Image image;
 
