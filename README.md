@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/hennr/series-stalker.svg?branch=master)](https://travis-ci.org/hennr/series-stalker)
 
+![master](https://github.com/hennr/series-stalker/actions/workflows/maven.yml/badge.svg?branch=master)
+
 A playground project to answer the question "what is the next air date of <your favorite tv show here>"
 
 If you have the same problem answering that question drop me a line, I may add accounts in the future.
